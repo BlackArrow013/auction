@@ -64,10 +64,9 @@ public class Auction
             }
             else {
                 // Report which bid is higher.
-                Bid highestBid = selectedLot.getHighestBid();
                 System.out.println("Lot number: " + lotNumber +
                                    " already has a bid of: " +
-                                   highestBid.getValue());
+                                   selectedLot.getHighestBid().getValue());
             }
         }
     }
@@ -98,6 +97,23 @@ public class Auction
             System.out.println("Lot number: " + lotNumber +
                                " does not exist.");
             return null;
+        }
+    }
+    
+    /**
+     * 
+     */
+    public void close()
+    {
+        for(Lot objeto : lots) {
+            System.out.println(objeto.toString());
+            Bid pujaMasAlta = objeto.getHighestBid();
+            if (pujaMasAlta != null) {
+                System.out.println(pujaMasAlta.getBidder().getName() + " es la persona con la puja más alta con un valor de " + pujaMasAlta.getValue());
+            }
+            else {
+                System.out.println("Aún no se ha realizado ninguna puja.");
+            }
         }
     }
 }
