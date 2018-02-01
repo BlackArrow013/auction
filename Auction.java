@@ -101,7 +101,7 @@ public class Auction
     }
     
     /**
-     * 
+     * Imprime detalles de todos los lotes de la colección.
      */
     public void close()
     {
@@ -115,5 +115,20 @@ public class Auction
                 System.out.println("Aún no se ha realizado ninguna puja.");
             }
         }
+    }
+    
+    /**
+     * Devuelve todos los lotes no vendidos.
+     */
+    public ArrayList<Lot> getUnsold()
+    {
+        ArrayList<Lot> lotesNoVendidos = new ArrayList(lots);        
+        for(Lot objeto : lots) {
+            Bid loteNoVendido = objeto.getHighestBid();
+            if (loteNoVendido != null) {
+                lotesNoVendidos.remove(objeto);
+            }
+        }
+        return lotesNoVendidos;
     }
 }
